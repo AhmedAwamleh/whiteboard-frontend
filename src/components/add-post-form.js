@@ -1,31 +1,17 @@
 import React from "react";
-import { useState } from 'react'
-import axios from "axios";
 
-function PostForm() {
-    const [post, setPost] = useState([]);
-    const [showPost, setShowPost] = useState(false)
+export default function AddPost(props) {
+    return (<div>
+        {
+            props.posts.map((post, idx) => {
+                return (<div key={idx}>
+                    <p>  {post.title}</p>
+                    <p>  {post.content}</p>
 
-
-    const getAllPost = async () => {
-        const allPost = await axios.get('http://localhost:3005/post')
-        setPost(allPost.data)
-        setShowPost(true)
-    }
-    return (
-        <div>
-            <form>
-                <label htmlFor="">ownerID</label>
-                <input type='text' name="username" />
-                <label htmlFor="">content</label>
-                <input type='text' name="discription" />
-
-                <input type='submit' name="add" />
-            </form>
-
-        </div>
+                </div>)
+            })
+        }
+    </div>
     )
 
 }
-
-export default PostForm
