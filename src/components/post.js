@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from 'react'
 import axios from "axios";
 import AddPost from './add-post-form'
-import AddCommentForm from './add-post-form'
+// import AddCommentForm from './add-post-form'
 function PostForm(props) {
     const [post, setPost] = useState([]);
     const [showPost, setShowPost] = useState(false)
@@ -39,26 +39,22 @@ function PostForm(props) {
     }, [])
     return (
         <div>
+
             <form onSubmit={addPost}>
                 <label htmlFor="">title</label>
                 <input type='text' name="title" />
                 <label htmlFor="">content</label>
                 <input type='text' name="content" />
-                <label htmlFor="">comment</label>
-                <input type='text' name="comment" />
-
                 <input type='submit' value="add post" />
+
                 {showPost &&
 
                     <AddPost posts={post} />
 
                 }
-                {
 
-                    <AddCommentForm posts={post} />
-
-                }
             </form>
+
 
         </div >
     )
