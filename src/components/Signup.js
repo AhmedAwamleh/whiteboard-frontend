@@ -49,7 +49,7 @@ function Signup() {
           <input type="submit" />
         </div>
       </form>
-      <p><a href="/Signin">Sign in now</a></p>
+      <a href="/signin">Sign in now</a>
     </div>
   );
 }

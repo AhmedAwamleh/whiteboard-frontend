@@ -21,7 +21,7 @@ function Signin() {
     ).then((res) => {
       if (res.status === 200) {
         localStorage.setItem('token', true);
-        window.location.href = '/posts';
+        window.location.href = '/post';
       }
     }).catch((err) => {
       alert('Invalid Login');
