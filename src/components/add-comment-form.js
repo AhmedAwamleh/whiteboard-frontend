@@ -9,7 +9,7 @@ export default function AddCommentForm(props) {
             props.posts.map((post, idx) => {
                 return (<div key={idx}>
                     <p>  {post.comment}</p>
-
+                    <input type='submit' value="add post" />
 
                 </div>)
             })
