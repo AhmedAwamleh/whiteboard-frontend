@@ -1,24 +1,40 @@
-
-import './App.css';
-import PostForm from './components/post'
-import Signup from './components/Signup';
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Signin from './components/Signin';
+import { useState } from 'react';
+import SignUp from '../src/components/signup';
+import Signin from './components/signin';
+import { When } from "react-if";
+import Posts from './components/Post';
+import cookies from 'react-cookies'
+import { useEffect } from 'react';
+import './style.css';
 
 function App() {
+  const [loggedin, setLoggedin] = useState(false);
+  useEffect(() => {
+
+    const token = cookies.load('token')
+    if (token) {
+      setLoggedin(true)
+    }
+  }, [])
+  const logout = () => {
+    cookies.remove('token')
+    setLoggedin(false)
+
+  }
   return (
-    <Router>
-      <div>
+    <div className="App">
+      <When condition={!loggedin}>
+        <SignUp /><br />
+        <Signin setLoggedin={setLoggedin} /><br />
+      </When >
+      <When condition={loggedin}>
+        <button onClick={logout} >Sign Out</button>
+        <Posts />
+      </When>
 
-        <Routes>
-          <Route exact path="/" element={<Signup />} />
-          <Route exact path="/Signin" element={<Signin />} />
-          <Route exact path="/post" element={<PostForm />} />
 
-        </Routes>
 
-      </div>
-    </Router>
+    </div >
   );
 }
 
