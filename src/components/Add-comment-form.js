@@ -6,7 +6,7 @@ export default function AddComment(props) {
       // AllPosts.data[0].CommentsTables
       props.CommentsTables.map((post, idx) => {
         return (<div key={idx}>
-          <p>from comment: {post.content} </p>
+          <p>comment: {post.content} </p>
 
 
         </div>)
