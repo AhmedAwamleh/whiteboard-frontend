@@ -11,7 +11,7 @@ function Posts() {
 
 
     const getPosts = async () => {
-        const AllPosts = await axios.get(`http://localhost:3009/CommentPost`)
+        const AllPosts = await axios.get(`http://localhost:3009/post`)
         setPost(AllPosts.data)
 
         setShowPost(true)
