@@ -16,6 +16,7 @@ function Signin(props) {
     };
     const encodedCredintial = base64.encode(`${data.username}:${data.password}`);
     console.log(`Basic ${encodedCredintial}`)
+
     axios.post('http://localhost:3009/login', {}, {
       headers: {
         Authorization: `Basic ${encodedCredintial}`
@@ -24,9 +25,12 @@ function Signin(props) {
       .then(res => {
         cookies.remove();
         cookies.save('token', res.data.token);
-        cookies.save('userID,', res.data.id);
+        cookies.save('userID', res.data.id);
         cookies.save('userName,', res.data.userName);
         cookies.save('role', res.data.role);
+
+
+
 
         // cookies.save('capabilities,', JSON.parse(res.data.capabilities));
         props.setLoggedin(true)
