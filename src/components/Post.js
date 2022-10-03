@@ -46,7 +46,7 @@ function Posts() {
         setRole(cookies.load('role'));
         getPosts()
 
-    }, [])
+    },)
 
     const addPost = async (e) => {
 
@@ -86,7 +86,7 @@ function Posts() {
 
 
                         {
-                            (role === 'admin' || item.userID == cookies.load('userID')) &&
+                            (role === 'admin' || item.userID === cookies.load('userID')) &&
                             <>
                                 <button type="submit" onClick={() => deletePost(item.id)}>delete</button>
 

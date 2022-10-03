@@ -1,14 +1,14 @@
 
 import { useState } from "react"
 import axios from "axios"
-import { useEffect } from "react"
+
 import cookies from "react-cookies";
 
 
 export default function AddComment(props) {
   const [comment, setComment] = useState(props.comments)
-  const [showcomment, setShowcomment] = useState(false)
 
+  setComment(true)
 
   // const getComment = async () => {
   //   const allComment = await axios.get(`http://localhost:3009/comment`);
@@ -22,20 +22,20 @@ export default function AddComment(props) {
 
 
 
-  const deleteComment = async (id) => {
-    try {
-      await axios.delete(`http://localhost:3009/comment/${id}`);
-      // getComment();
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // const deleteComment = async (id) => {
+  //   try {
+  //     await axios.delete(`http://localhost:3009/comment/${id}`);
+  //     // getComment();
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
-  useEffect(() => {
+  // useEffect(() => {
 
-    // getComment()
+  //   // getComment()
 
-  }, [])
+  // }, [])
 
 
 
