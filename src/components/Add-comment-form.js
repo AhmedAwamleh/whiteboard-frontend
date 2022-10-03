@@ -7,10 +7,35 @@ import cookies from "react-cookies";
 
 export default function AddComment(props) {
   const [comment, setComment] = useState(props.comments)
+  const [showcomment, setShowcomment] = useState(false)
 
-  setComment(true)
+
+  // const getComment = async () => {
+  //   const allComment = await axios.get(`http://localhost:3009/comment`);
+  //   setComment(allComment.data.comment);
+  //   setShowcomment(true)
+  //   if (setShowcomment) {
+  //     console.log(allComment.data.comment)
+  //   }
+  // };
 
 
+
+
+  // const deleteComment = async (id) => {
+  //   try {
+  //     await axios.delete(`http://localhost:3009/comment/${id}`);
+  //     // getComment();
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+
+  // useEffect(() => {
+
+  //   // getComment()
+
+  // }, [])
 
 
 

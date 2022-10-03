@@ -18,6 +18,7 @@ export default function AddPost(props) {
 
         );
         setPost(postData.data);
+        console.log(postData.data)
         props.getPosts()
     };
 
@@ -32,10 +33,9 @@ export default function AddPost(props) {
     return (
         <div>
 
-            {
-                post?.title
+            {post?.title} {""} {post?.content} by {post?.userTable.userName} {""} ID:{""}  {post?.userID}
+            <br />
 
-            }
             < AddComment postId={post?.id} comments={post?.CommentsTables} getPost={getPost} />
         </div >
 
