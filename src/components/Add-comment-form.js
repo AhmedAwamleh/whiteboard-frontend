@@ -7,7 +7,7 @@ import cookies from "react-cookies";
 
 export default function AddComment(props) {
   const [comment, setComment] = useState(props.comments)
-  const [showcomment, setShowcomment] = useState(false)
+
 
 
   // const getComment = async () => {
@@ -50,7 +50,7 @@ export default function AddComment(props) {
 
     }
     console.log(commentInfo)
-    await axios.post(`http://localhost:3009/comment`, commentInfo)
+    await axios.post(`https://lab-9-10.herokuapp.com/comment`, commentInfo)
     props.getPost()
   }
 

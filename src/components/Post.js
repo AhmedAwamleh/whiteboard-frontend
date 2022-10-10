@@ -14,7 +14,7 @@ function Posts() {
 
     const getPosts = async () => {
         const allPosts = await axios.get(
-            `http://localhost:3009/post`, {
+            `https://lab-9-10.herokuapp.com/post`, {
             headers: {
                 Authorization: `Bearer ${cookies.load("token")}`,
             },
@@ -31,7 +31,7 @@ function Posts() {
 
     const deletePost = async (id) => {
         const token = cookies.load('token')
-        await axios.delete(`http://localhost:3009/post/${id}`, {
+        await axios.delete(`https://lab-9-10.herokuapp.com/post/${id}`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -59,7 +59,7 @@ function Posts() {
 
         }
         console.log(postInfo)
-        await axios.post(`http://localhost:3009/post`, postInfo)
+        await axios.post(`https://lab-9-10.herokuapp.com/post`, postInfo)
         getPosts();
     }
 

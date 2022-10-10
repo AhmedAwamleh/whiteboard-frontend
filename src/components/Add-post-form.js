@@ -10,7 +10,7 @@ export default function AddPost(props) {
 
     const getPost = async () => {
 
-        const postData = await axios.get(`http://localhost:3009/post/${post.id}`, {
+        const postData = await axios.get(`https://lab-9-10.herokuapp.com/post/${post.id}`, {
             headers: {
                 Authorization: `Bearer ${cookies.load("token")}`,
             },
