@@ -1,70 +1,20 @@
-import { useState } from "react"
-import axios from "axios"
 import { useEffect } from "react"
 import AddPost from './Add-post-form'
-import cookies from "react-cookies";
-
+import { useContext } from "react";
+import { PostContext } from "../context/postcontext";
+import { UserContext } from "../context/AuthContext";
 
 function Posts() {
-    const [post, setPost] = useState()
-    const [showPost, setShowPost] = useState(false)
-    const [role, setRole] = useState('');
 
-
-
-    const getPosts = async () => {
-        const allPosts = await axios.get(
-            `https://lab-9-10.herokuapp.com/post`, {
-            headers: {
-                Authorization: `Bearer ${cookies.load("token")}`,
-            },
-        }
-
-        );
-        setPost(allPosts.data);
-
-        setShowPost(true)
-        if (post) {
-            console.log(post)
-        }
-    };
-
-    const deletePost = async (id) => {
-        const token = cookies.load('token')
-        await axios.delete(`https://lab-9-10.herokuapp.com/post/${id}`, {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        })
-        getPosts()
-    }
-
-
-
-
+    const { post, showPost, getPosts, deletePost, addPost } = useContext(PostContext)
+    const { role, canDo, } = useContext(UserContext)
     useEffect(() => {
-        setRole(cookies.load('role'));
+        console.log(role)
         getPosts()
 
     }, [])
 
-    const addPost = async (e) => {
-
-        e.preventDefault()
-        const postInfo = {
-
-            title: e.target.title.value,
-            content: e.target.content.value,
-            userID: cookies.load("userID"),
-
-        }
-        console.log(postInfo)
-        await axios.post(`https://lab-9-10.herokuapp.com/post`, postInfo)
-        getPosts();
-    }
-
     return (
-
 
 
         <div>
@@ -85,8 +35,8 @@ function Posts() {
                         <AddPost post={item} getPosts={getPosts} />
 
 
-                        {
-                            (role === 'admin' || item.userID == cookies.load('userID')) &&
+                        {canDo('delete', item.userID) === true &&
+
                             <>
                                 <button type="submit" onClick={() => deletePost(item.id)}>delete</button>
 

@@ -5,16 +5,19 @@ import App from './App';
 import SignUp from './components/SignUp';
 import reportWebVitals from './reportWebVitals';
 import UserProvider from './context/AuthContext'
+import PostContextProvider from './context/postcontext';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <UserProvider>
-    <BrowserRouter>
-      <Routes>
-        <Route path='/' element={<App />}>
-          <Route path='signup' element={<SignUp />} />
-        </Route >
-      </Routes>
-    </BrowserRouter >
+    <PostContextProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' element={<App />}>
+            <Route path='signup' element={<SignUp />} />
+          </Route >
+        </Routes>
+      </BrowserRouter >
+    </PostContextProvider>
   </UserProvider>
 
 );

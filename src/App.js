@@ -5,14 +5,22 @@ import './style.css';
 import SignUp from './components/SignUp';
 import { useContext } from "react";
 import { UserContext } from "./context/AuthContext";
+import { useEffect } from 'react';
+
 
 function App() {
-  const { setLoggedin, loggedin, logout } = useContext(UserContext)
+  const { loggedin, logout, checkToken } = useContext(UserContext)
+
+  useEffect(() => {
+    checkToken()
+
+  }, [])
+
   return (
     <div className="App">
 
       <When condition={!loggedin}>
-        <Signin setLoggedin={setLoggedin} /><br />
+        <Signin /><br />
         <SignUp />
         {/* <ul>
           <li>
