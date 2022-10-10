@@ -1,22 +1,11 @@
-import axios from "axios";
-import React from "react";
+import { useContext } from "react";
+import { UserContext } from "../context/AuthContext";
 
 function SignUp() {
+  const { handleSignUp } = useContext(UserContext)
 
-  const handleSignUp = async (e) => {
-    e.preventDefault();
-    const data = {
-      email: e.target.email.value,
-      userName: e.target.userName.value,
-      password: e.target.password.value
-
-    }
-    await axios.post(`http://localhost:3009/signUp`, data).then(res => {
-      console.log(res)
-    }).catch(error => console.log(error))
-
-  }
   return (
+
 
     <div>
       <h2>Sign up</h2>
@@ -27,6 +16,7 @@ function SignUp() {
         <button type="Submit" >Save</button>
       </form>
     </div>
+
   )
 }
 export default SignUp;

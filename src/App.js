@@ -1,31 +1,24 @@
-import { useState } from 'react';
-import SignUp from '../src/components/signup';
 import Signin from './components/signin';
 import { When } from "react-if";
 import Posts from './components/Post';
-import cookies from 'react-cookies'
-import { useEffect } from 'react';
 import './style.css';
+import SignUp from './components/SignUp';
+import { useContext } from "react";
+import { UserContext } from "./context/AuthContext";
 
 function App() {
-  const [loggedin, setLoggedin] = useState(false);
-  useEffect(() => {
-
-    const token = cookies.load('token')
-    if (token) {
-      setLoggedin(true)
-    }
-  }, [])
-  const logout = () => {
-    cookies.remove('token')
-    setLoggedin(false)
-
-  }
+  const { setLoggedin, loggedin, logout } = useContext(UserContext)
   return (
     <div className="App">
+
       <When condition={!loggedin}>
-        <SignUp /><br />
         <Signin setLoggedin={setLoggedin} /><br />
+        <SignUp />
+        {/* <ul>
+          <li>
+            <Link to='./SignUp'>signup</Link>
+          </li>
+        </ul> */}
       </When >
       <When condition={loggedin}>
         <button onClick={logout} >Sign Out</button>
