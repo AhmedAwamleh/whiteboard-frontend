@@ -3,8 +3,7 @@ import { useState } from "react"
 import axios from "axios"
 
 import cookies from "react-cookies";
-
-
+import { HStack, Button, Input, VStack, Text } from '@chakra-ui/react'
 export default function AddComment(props) {
   const [comment, setComment] = useState(props.comments)
 
@@ -55,28 +54,38 @@ export default function AddComment(props) {
   }
 
   return (
-    <div>
+
+    <div >
       <form onSubmit={addComment}>
-        <input type="text" id="content" placeholder="write your title comment" /><br />
-        <button type="submit" id="PosttSubmit" >comment</button>
+        <HStack >
+          <Input
+            border="2px"
+            borderColor="blue.100"
+            id="content" placeholder="write your title comment"
+          />
+
+          <Button type="submit" id="PosttSubmit" colorScheme='blue' >comment</Button>
+        </HStack>
       </form>
 
-      {comment &&
+      {
+        comment &&
         comment.map((item, idx) => (
-          <li key={idx}>
-            <p>
-              {item.content}
+          <div key={idx}>
+            <Text as='mark' fontSize='sm'>{item.content}
+            </Text>
 
-            </p>
+
+
 
             {/* <button button type="submit" onClick={() => deleteComment(item.id)}>delete</button> */}
-          </li>
+          </div>
         ))
 
       }
 
 
-    </div >
+    </ div >
   )
 
 }

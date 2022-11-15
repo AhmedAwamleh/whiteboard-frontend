@@ -1,21 +1,36 @@
 import { useContext } from "react";
 import { UserContext } from "../context/AuthContext";
-
+import { HStack, Button, Input, VStack } from '@chakra-ui/react'
 function SignUp() {
   const { handleSignUp } = useContext(UserContext)
 
   return (
 
 
-    <div>
-      <h2>Sign up</h2>
-      <form action="" onSubmit={handleSignUp} >
-        <input type="text" placeholder="enter your name/username" id="userName" /><br />
-        <input type="email" placeholder="enter your email" id="email" /><br />
-        <input type="text" placeholder="enter your passowrd" id="password" /><br />
-        <button type="Submit" >Save</button>
-      </form>
-    </div>
+
+
+    <form action="" onSubmit={handleSignUp} >
+      <HStack>
+        <Input
+          placeholder="enter your name/username" id="userName"
+          border="2px"
+          borderColor="blue.100"
+        />
+        <Input
+          placeholder="enter your email" id="email"
+          border="2px"
+          borderColor="blue.100"
+        />
+        <Input
+          placeholder="enter your passowrd" id="password"
+          border="2px"
+          borderColor="blue.100"
+        />
+
+        <Button type="Submit" px='10' colorScheme='blue'>Sign Up</Button>
+      </HStack>
+    </form>
+
 
   )
 }

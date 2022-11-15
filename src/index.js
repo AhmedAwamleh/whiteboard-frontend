@@ -1,22 +1,26 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import App from './App';
 import SignUp from './components/SignUp';
 import reportWebVitals from './reportWebVitals';
 import UserProvider from './context/AuthContext'
 import PostContextProvider from './context/postcontext';
+import { ChakraProvider, extendTheme, ColorModeScript } from '@chakra-ui/react'
+const config = {
+  initialColorMode: 'light',
+  useSystemColorMode: false,
+}
+const theme = extendTheme({ config })
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <UserProvider>
     <PostContextProvider>
-      <BrowserRouter>
-        <Routes>
-          <Route path='/' element={<App />}>
-            <Route path='signup' element={<SignUp />} />
-          </Route >
-        </Routes>
-      </BrowserRouter >
+      <ChakraProvider>
+        <ColorModeScript initialColorMode={theme.config.initialColorMode} />
+
+        <App />
+      </ChakraProvider>
     </PostContextProvider>
   </UserProvider>
 
