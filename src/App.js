@@ -1,13 +1,11 @@
 import Signin from './components/signin';
 import { When } from "react-if";
 import Posts from './components/Post';
-import './style.css';
 import SignUp from './components/SignUp';
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { UserContext } from "./context/AuthContext";
-import { useEffect } from 'react';
-
-
+import { FaSun, FaMoon } from 'react-icons/fa'
+import { IconButton, useColorMode, VStack, Heading, Button } from '@chakra-ui/react'
 function App() {
   const { loggedin, logout, checkToken } = useContext(UserContext)
 
@@ -15,9 +13,24 @@ function App() {
     checkToken()
 
   }, [])
-
+  const { colorMode, toggleColorMode } = useColorMode()
   return (
-    <div className="App">
+    <VStack p='2em'>
+
+
+      <IconButton
+
+        colorScheme='teal'
+        aria-label='Send email'
+        icon={colorMode === 'light' ? < FaSun /> : <FaMoon />}
+        onClick={toggleColorMode}
+        alignSelf='flex-end'
+      />
+      <Heading as='h1' size='4xl' noOfLines={1}
+        bgGradient='linear(to-r,cyan.500,cyan.400,green.500)' bgClip='text'>
+        White-Boared
+      </Heading>
+
 
       <When condition={!loggedin}>
         <Signin /><br />
@@ -29,13 +42,14 @@ function App() {
         </ul> */}
       </When >
       <When condition={loggedin}>
-        <button onClick={logout} >Sign Out</button>
+
         <Posts />
+        <Button colorScheme='blue' px='10' onClick={logout} >Sign Out</Button>
+
+
       </When>
 
-
-
-    </div >
+    </VStack >
   );
 }
 

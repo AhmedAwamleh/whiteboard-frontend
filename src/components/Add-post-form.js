@@ -4,6 +4,7 @@ import AddComment from './Add-comment-form'
 import { useState } from "react";
 import cookies from 'react-cookies'
 import axios from "axios";
+import { VStack, StackDivider, IconButton, Text } from '@chakra-ui/react'
 
 export default function AddPost(props) {
     const [post, setPost] = useState(props.post)
@@ -31,13 +32,20 @@ export default function AddPost(props) {
 
 
     return (
-        <div>
 
-            {post?.title} {""} {post?.content} by {post?.userTable.userName} {""} ID:{""}  {post?.userID}
-            <br />
 
+        <VStack borderColor="blue.100"
+            divider={<StackDivider />}
+            borderWidth='4px'
+            p="4"
+            borderRadius='lg'
+            alignItems='stretch'
+            w={{ base: '90vw', sm: '80vw', lg: '50vw', xl: '40vw' }}
+        >
+
+            <Text fontSize='4xl' as='cite'> {post?.title} {""} {post?.content} by {post?.userTable.userName} {""} ID:{""}  {post?.userID}</Text><br />
             < AddComment postId={post?.id} comments={post?.CommentsTables} getPost={getPost} />
-        </div >
+        </VStack >
 
     )
 }
