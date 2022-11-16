@@ -27,7 +27,7 @@ function SignUp() {
           borderColor="blue.100"
         />
 
-        <Button type="Submit" px='10' colorScheme='blue'>Sign Up</Button>
+        <Button type="Submit" variant={['sm', 'md', 'lg']} px='10'>Sign In</Button>
       </HStack>
     </form>
 
