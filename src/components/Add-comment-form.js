@@ -63,8 +63,8 @@ export default function AddComment(props) {
             borderColor="blue.100"
             id="content" placeholder="write your title comment"
           />
+          <Button type="Submit" id="PosttSubmit" variant={['sm', 'md', 'lg']} px='10'>comment</Button>
 
-          <Button type="submit" id="PosttSubmit" colorScheme='blue' >comment</Button>
         </HStack>
       </form>
 
@@ -72,7 +72,7 @@ export default function AddComment(props) {
         comment &&
         comment.map((item, idx) => (
           <div key={idx}>
-            <Text as='mark' fontSize='sm'>{item.content}
+            <Text variant={['md', 'sm']}>{item.content}
             </Text>
 
 

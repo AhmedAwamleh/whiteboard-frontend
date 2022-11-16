@@ -43,7 +43,7 @@ export default function AddPost(props) {
             w={{ base: '90vw', sm: '80vw', lg: '50vw', xl: '40vw' }}
         >
 
-            <Text fontSize='4xl' as='cite'> {post?.title} {""} {post?.content} by {post?.userTable.userName} {""} ID:{""}  {post?.userID}</Text><br />
+            <Text variant={['sm', 'md']} fontSize='4xl' as='cite'> {post?.title} {""} {post?.content} by {post?.userTable.userName} {""} ID:{""}  {post?.userID}</Text><br />
             < AddComment postId={post?.id} comments={post?.CommentsTables} getPost={getPost} />
         </VStack >
 

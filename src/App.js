@@ -6,6 +6,7 @@ import { useContext, useEffect } from "react";
 import { UserContext } from "./context/AuthContext";
 import { FaSun, FaMoon } from 'react-icons/fa'
 import { IconButton, useColorMode, VStack, Heading, Button } from '@chakra-ui/react'
+
 function App() {
   const { loggedin, logout, checkToken } = useContext(UserContext)
 
@@ -26,8 +27,13 @@ function App() {
         onClick={toggleColorMode}
         alignSelf='flex-end'
       />
-      <Heading as='h1' size='4xl' noOfLines={1}
-        bgGradient='linear(to-r,cyan.500,cyan.400,green.500)' bgClip='text'>
+      <Heading as='h1'
+        size='4xl'
+        noOfLines={1}
+        bgGradient='linear(to-r, primary.400, primary.100, warning.100)'
+        bgClip='text'
+        textStyle='h1'
+      >
         White-Boared
       </Heading>
 
@@ -44,7 +50,7 @@ function App() {
       <When condition={loggedin}>
 
         <Posts />
-        <Button colorScheme='blue' px='10' onClick={logout} >Sign Out</Button>
+        <Button type="Submit" variant={['sm', 'md', 'lg']} px='10' onClick={logout}>Sign Out</Button>
 
 
       </When>

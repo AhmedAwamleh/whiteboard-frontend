@@ -25,7 +25,8 @@ function Signin(props) {
           borderColor="blue.100"
 
         />
-        <Button type="Submit" px='10' colorScheme='blue'>Sign In</Button>
+        <Button type="Submit" variant={['sm', 'md', 'lg']} px='10'>Sign In</Button>
+
       </HStack>
       {/* <input type="text" placeholder="enter your email" id="username" /><br />
       <input type="text" placeholder="enter your passowrd" id="password" /><br /> */}

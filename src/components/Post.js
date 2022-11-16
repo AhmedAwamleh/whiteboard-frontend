@@ -33,7 +33,9 @@ function Posts() {
                         borderColor="blue.100"
                         id="content" placeholder="write your content here"
                     />
-                    <Button type="submit" id="PosttSubmit" px='10' colorScheme='blue' >Post</Button>
+
+                    <Button type="Submit" colorScheme="black" variant={['sm', 'md', 'lg']} px='10' id="PosttSubmit"> Post</Button>
+
                 </VStack>
             </form>
 
