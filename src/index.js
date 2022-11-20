@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
-import SignUp from './components/SignUp';
 import reportWebVitals from './reportWebVitals';
 import UserProvider from './context/AuthContext'
 import PostContextProvider from './context/postcontext';

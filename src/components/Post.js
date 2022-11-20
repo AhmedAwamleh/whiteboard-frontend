@@ -5,7 +5,7 @@ import { PostContext } from "../context/postcontext";
 import { UserContext } from "../context/AuthContext";
 import { VStack, HStack, IconButton, Button, Input } from '@chakra-ui/react'
 import { FaTrash } from 'react-icons/fa'
-import { icons } from "react-icons";
+
 function Posts() {
 
     const { post, showPost, getPosts, deletePost, addPost } = useContext(PostContext)
