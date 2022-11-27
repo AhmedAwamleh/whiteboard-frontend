@@ -6,14 +6,12 @@ import { useContext, useEffect } from "react";
 import { UserContext } from "./context/AuthContext";
 import { FaSun, FaMoon } from 'react-icons/fa'
 import { IconButton, useColorMode, VStack, Heading, Button } from '@chakra-ui/react'
+import AddPost from './components/Add-post-form';
 
 function App() {
-  const { loggedin, logout, checkToken } = useContext(UserContext)
+  const { logout, user } = useContext(UserContext)
 
-  useEffect(() => {
-    checkToken()
 
-  }, [])
   const { colorMode, toggleColorMode } = useColorMode()
   return (
     <VStack p='2em'>
@@ -38,23 +36,15 @@ function App() {
       </Heading>
 
 
-      <When condition={!loggedin}>
+      <When condition={!user.loggedin}>
         <Signin /><br />
         <SignUp />
-        {/* <ul>
-          <li>
-            <Link to='./SignUp'>signup</Link>
-          </li>
-        </ul> */}
       </When >
-      <When condition={loggedin}>
-
+      <When condition={user.loggedin}>
+        <AddPost />
         <Posts />
         <Button type="Submit" variant={['sm', 'md', 'lg']} px='10' onClick={logout}>Sign Out</Button>
-
-
       </When>
-
     </VStack >
   );
 }

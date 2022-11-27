@@ -4,11 +4,12 @@ import { UserContext } from "../context/AuthContext";
 import { HStack, Button, Input, VStack } from '@chakra-ui/react'
 
 function Signin(props) {
+
+
   const { handleSignIn } = useContext(UserContext)
+
+
   return (
-
-
-
 
 
     <form action="" onSubmit={handleSignIn} >
