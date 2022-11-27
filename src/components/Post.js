@@ -3,68 +3,62 @@ import AddPost from './Add-post-form'
 import { useContext } from "react";
 import { PostContext } from "../context/postcontext";
 import { UserContext } from "../context/AuthContext";
-import { VStack, HStack, IconButton, Button, Input } from '@chakra-ui/react'
+import { IconButton, Input } from '@chakra-ui/react'
 import { FaTrash } from 'react-icons/fa'
-
+import { getData } from "../actions/postAction";
+import { VStack, StackDivider, } from '@chakra-ui/react'
+import AddComment from "./Add-comment-form";
 function Posts() {
 
-    const { post, showPost, getPosts, deletePost, addPost } = useContext(PostContext)
-    const { role, canDo, } = useContext(UserContext)
-    useEffect(() => {
-        console.log(role)
-        getPosts()
+    const { post, getPosts, deletePost } = useContext(PostContext)
 
+    const { user } = useContext(UserContext)
+
+    useEffect(() => {
+        if (post) {
+
+            getPosts()
+        }
     }, [])
 
     return (
-
-
         <div>
-
-            <form onSubmit={addPost}>
-                <VStack p='2em' alignItems='stretch'>
-                    <Input
-                        border="2px"
-                        borderColor="blue.100"
-                        id="title" placeholder="write your title here"
-                    />
-                    <Input
-                        border="2px"
-                        borderColor="blue.100"
-                        id="content" placeholder="write your content here"
-                    />
-
-                    <Button type="Submit" colorScheme="black" variant={['sm', 'md', 'lg']} px='10' id="PosttSubmit"> Post</Button>
-
-                </VStack>
-            </form>
-
-            {showPost &&
-                post.map((item, idx) => (
-                    <div key={idx}>
-
-                        <AddPost post={item} getPosts={getPosts} />
+            <VStack borderColor="blue.100"
+                divider={<StackDivider />}
+                borderWidth='4px'
+                p="4"
+                borderRadius='lg'
+                alignItems='stretch'
+                w={{ base: '90vw', sm: '80vw', lg: '50vw', xl: '40vw' }}>
 
 
-                        {canDo('delete', item.userID) === true &&
 
-                            <>
+                <div>
 
-                                <IconButton
-                                    icon={<FaTrash />}
-                                    isRound='true'
-                                    onClick={() => deletePost(item.id)}
+                    {
+                        post.map((post, idx) => (
+                            <div key={idx}>
+                                {post.id}
+                                {post.title}
+                                {user.user.capabilities.includes('delete') &&
+                                    <>
+                                        <IconButton
+                                            icon={<FaTrash />}
+                                            isRound='true'
+                                            onClick={() => deletePost(post.id)}
 
-                                />
-                            </>
-                        }
-                    </div>
+                                        />
+                                    </>
+                                }
+                                < AddComment postId={post.id} comments={post.CommentsTables} getPost={getPosts} user={user} />
+                            </div>
 
-                ))
-            }
+                        ))
+                    }
 
+                </div >
+            </VStack>
         </div>
-
 
     )
 }

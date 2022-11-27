@@ -1,33 +1,21 @@
 
 import React from "react";
+import { useEffect } from "react";
+import { useContext } from "react";
+import { VStack, StackDivider, Input, Button, Text } from '@chakra-ui/react'
+import { PostContext } from "../context/postcontext";
 import AddComment from './Add-comment-form'
-import { useState } from "react";
-import cookies from 'react-cookies'
-import axios from "axios";
-import { VStack, StackDivider, IconButton, Text } from '@chakra-ui/react'
-
 export default function AddPost(props) {
-    const [post, setPost] = useState(props.post)
+    console.log(props.post)
+    const { addPost } = useContext(PostContext)
 
-    const getPost = async () => {
 
-        const postData = await axios.get(`https://lab-9-10.herokuapp.com/post/${post.id}`, {
-            headers: {
-                Authorization: `Bearer ${cookies.load("token")}`,
-            },
+    useEffect(() => {
+        if (props.post) {
+
+            props.Posts()
         }
-
-        );
-        setPost(postData.data);
-        console.log(postData.data)
-        props.getPosts()
-    };
-
-    // useEffect(() => {
-
-    //     getPost()
-
-    // }, [])
+    }, [])
 
 
 
@@ -42,9 +30,26 @@ export default function AddPost(props) {
             alignItems='stretch'
             w={{ base: '90vw', sm: '80vw', lg: '50vw', xl: '40vw' }}
         >
+            < form onSubmit={addPost} >
+                <VStack p='2em' alignItems='stretch'>
+                    <Input
+                        border="2px"
+                        borderColor="blue.100"
+                        id="title" placeholder="write your title here"
+                    />
+                    <Input
+                        border="2px"
+                        borderColor="blue.100"
+                        id="content" placeholder="write your content here"
+                    />
 
-            <Text variant={['sm', 'md']} fontSize='4xl' as='cite'> {post?.title} {""} {post?.content} by {post?.userTable.userName} {""} ID:{""}  {post?.userID}</Text><br />
-            < AddComment postId={post?.id} comments={post?.CommentsTables} getPost={getPost} />
+                    <Button type="Submit" colorScheme="black" variant={['sm', 'md', 'lg']} px='10' id="PosttSubmit"> Post</Button>
+
+                </VStack>
+            </ form >
+
+
+
         </VStack >
 
     )
