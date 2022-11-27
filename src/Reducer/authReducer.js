@@ -8,7 +8,6 @@ export const initialState = {
 
   errorMassge: false,
 
-
 }
 
 export const AuthReducer = (state, action) => {
@@ -37,6 +36,11 @@ export const AuthReducer = (state, action) => {
         token: "",
         errorMassge: false
 
+      }
+    case "SING_UP":
+      return {
+        ...state,
+        loggedin: false
       }
 
     default:

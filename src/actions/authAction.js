@@ -11,11 +11,9 @@ export const login = (dispatch, payload) => {
       }
     })
       .then(res => {
-
         dispatch({ type: "LOGIN", payload: res.data })
         localStorage.setItem('currentUser', JSON.stringify(res.data))
         localStorage.setItem('token', res.data.token)
-
 
       })
       .catch(err => console.log(err));
@@ -28,4 +26,15 @@ export const logOutHandler = (dispatch) => {
   dispatch({ type: "LOG_OUT" })
   localStorage.removeItem('currentUser')
   localStorage.removeItem('token')
+}
+
+export const SINGUP = (dispatch, payload) => {
+  try {
+    axios.post(`https://lab-9-10.herokuapp.com/signUp`, payload).then(res => {
+      dispatch({ type: "SIGN_UP", payload: res.data })
+    })
+  } catch (error) {
+    console.log(error)
+
+  }
 }

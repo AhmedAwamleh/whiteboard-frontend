@@ -25,3 +25,9 @@ export const deletePosts = (dispatch, data) => {
   })
 
 }
+
+export const creatPost = (dispatch, data) => {
+
+  axios.post(`https://lab-9-10.herokuapp.com/post`, data)
+    .then(res => dispatch({ type: 'ADD_POST', payload: res.data }))
+}
