@@ -6,14 +6,14 @@ import { UserContext } from "../context/AuthContext";
 import { IconButton, Input } from '@chakra-ui/react'
 import { FaTrash } from 'react-icons/fa'
 import { getData } from "../actions/postAction";
-import { VStack, StackDivider, } from '@chakra-ui/react'
+import { VStack, StackDivider, Text } from '@chakra-ui/react'
 import AddComment from "./Add-comment-form";
 function Posts() {
 
     const { post, getPosts, deletePost } = useContext(PostContext)
 
     const { user } = useContext(UserContext)
-
+    console.log(post)
     useEffect(() => {
         if (post) {
 
@@ -38,8 +38,11 @@ function Posts() {
                     {
                         post.map((post, idx) => (
                             <div key={idx}>
-                                {post.id}
-                                {post.title}
+                                <Text>
+                                    {post.userTable.userName}
+
+                                </Text>
+                                <Text>  {post.title}</Text>
                                 {user.user.capabilities.includes('delete') &&
                                     <>
                                         <IconButton

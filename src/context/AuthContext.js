@@ -3,7 +3,7 @@ import base64 from "base-64"
 import { createContext, useState } from "react";
 import { useReducer } from "react";
 import { AuthReducer, initialState } from "../Reducer/authReducer";
-import { login, logOutHandler } from "../actions/authAction";
+import { login, logOutHandler, SINGUP } from "../actions/authAction";
 export const UserContext = createContext();
 
 
@@ -61,9 +61,7 @@ const UserProvider = (props) => {
       password: e.target.password.value
 
     }
-    await axios.post(`https://lab-9-10.herokuapp.com/signUp`, data).then(res => {
-      console.log(res)
-    }).catch(error => console.log(error))
+    SINGUP(dispatch, data)
 
   }
   // const canDo = (role) => {
