@@ -9,9 +9,10 @@ export const initialState = {
   errorMassge: false,
 
 }
-
+console.log(initialState)
 export const AuthReducer = (state, action) => {
-
+  console.log(state)
+  console.log(action)
   switch (action.type) {
 
     case 'LOGIN':

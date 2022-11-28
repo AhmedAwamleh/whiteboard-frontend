@@ -6,27 +6,31 @@ import UserProvider from './context/AuthContext'
 import PostContextProvider from './context/postcontext';
 import { ChakraProvider, extendTheme, ColorModeScript } from '@chakra-ui/react'
 import { newTheme } from './theme/index'
-
-
+import { Provider } from 'react-redux';
+import { store } from './redux/store';
 const config = {
   initialColorMode: 'light',
   useSystemColorMode: false,
 }
+
 const theme = extendTheme({ config })
 
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
+  <ChakraProvider theme={newTheme}>
+    <Provider store={store}>
+      <UserProvider>
+        <PostContextProvider>
 
-  <UserProvider>
-    <PostContextProvider >
-      <ChakraProvider theme={newTheme}>
-        <ColorModeScript initialColorMode={theme.config.initialColorMode} />
-        <App />
-      </ChakraProvider>
-    </PostContextProvider>
-  </UserProvider>
+          <ColorModeScript initialColorMode={theme.config.initialColorMode} />
+          <App />
+
+        </PostContextProvider>
+      </UserProvider>
+    </Provider>
+  </ChakraProvider>
 
 
 );
