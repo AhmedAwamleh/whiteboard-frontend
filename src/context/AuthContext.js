@@ -10,6 +10,8 @@ export const UserContext = createContext();
 
 const UserProvider = (props) => {
   const [user, dispatch] = useReducer(AuthReducer, initialState)
+  console.log(user)
+
   // const [loggedin, setLoggedin] = useState(false);
   // const [role, setRole] = useState('');
   // const [user, setUser] = useState({})

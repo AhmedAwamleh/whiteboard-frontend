@@ -1,5 +1,5 @@
 'use strict'
-
+import { logIn, logout, logfail, signup } from "../redux/slicer";
 import axios from "axios";
 
 export const login = (dispatch, payload) => {
@@ -21,6 +21,8 @@ export const login = (dispatch, payload) => {
     dispatch({ type: 'LOGIN_FAIL', payload: error })
   }
 }
+
+
 
 export const logOutHandler = (dispatch) => {
   dispatch({ type: "LOG_OUT" })

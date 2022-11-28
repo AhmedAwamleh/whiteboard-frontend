@@ -2,7 +2,7 @@ import React from "react";
 import { useContext } from "react";
 import { UserContext } from "../context/AuthContext";
 import { HStack, Button, Input } from '@chakra-ui/react'
-
+import { logIn, logout, logfail, signup } from "../redux/slicer"
 function Signin(props) {
 
 
